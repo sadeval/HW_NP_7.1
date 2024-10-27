@@ -10,19 +10,15 @@ namespace UserRegistrationServer
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Добавляем сервисы контроллеров в контейнер зависимостей
             builder.Services.AddControllers();
 
             var app = builder.Build();
 
-            // Настраиваем конвейер обработки HTTP-запросов
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            // Если не используете HTTPS, можно отключить редирект
-            // app.UseHttpsRedirection();
 
             app.UseRouting();
 
