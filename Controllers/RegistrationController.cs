@@ -7,7 +7,6 @@ namespace UserRegistrationServer.Controllers
     [Route("api/[controller]")]
     public class RegistrationController : ControllerBase
     {
-        // Это временное хранилище пользователей
         private static List<User> users = new List<User>();
         private static int nextId = 1;
 
@@ -19,13 +18,11 @@ namespace UserRegistrationServer.Controllers
                 return BadRequest("Пользователь не может быть null");
             }
 
-            // Простейшая валидация
             if (string.IsNullOrEmpty(newUser.Username) || string.IsNullOrEmpty(newUser.Password) || string.IsNullOrEmpty(newUser.Email))
             {
                 return BadRequest("Все поля обязательны для заполнения");
             }
 
-            // Проверка уникальности имени пользователя
             if (users.Any(u => u.Username == newUser.Username))
             {
                 return Conflict("Пользователь с таким именем уже существует");
